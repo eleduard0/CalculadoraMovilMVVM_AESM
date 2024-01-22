@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalculadoraMovilMVVM_AESM.Vistas.PaginaPrincipal">
+    <Grid VerticalOptions="EndAndExpand" BackgroundColor="#131313">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Entry x:Name="Resultado" Grid.Row="0" Text="" FontSize="36" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" BackgroundColor="#131313" Margin="10,0,15,0" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+
+            <Button Text="C" Grid.Row="0" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
+            <Button Text="%" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
+            <ImageButton Source="borrar.png" Grid.Row="0" Grid.Column="2"  BackgroundColor="Transparent" />
+            <Button Text="/"  Grid.Row="0" Grid.Column="3"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a" />
+            <Button Text="7" Grid.Row="1" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23" />
+            <Button Text="8" Grid.Row="1" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="9" Grid.Row="1" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23" />
+            <Button Text="*"  Grid.Row="1"  Grid.Column="3"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
+            <Button Text="4" Grid.Row="2" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="5" Grid.Row="2" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="6" Grid.Row="2" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="-" Grid.Row="2" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
+            <Button Text="1" Grid.Row="3" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="2" Grid.Row="3" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="3" Grid.Row="3" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="+" Grid.Row="3" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
+            <Button Text="00" Grid.Row="4" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="0" Grid.Row="4" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="." Grid.Row="4" Grid.Column="2"   BackgroundColor="Transparent" FontSize="23"/>
+            <Button Text="=" Grid.Row="4" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
+        </Grid>
+    </Grid>
+</ContentPage>

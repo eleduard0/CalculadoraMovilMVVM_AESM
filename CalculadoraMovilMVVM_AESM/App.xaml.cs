@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using CalculadoraMovilMVVM_AESM.Vistas;
 using Xamarin.Forms.Xaml;
 
 namespace CalculadoraMovilMVVM_AESM
@@ -10,7 +11,7 @@ namespace CalculadoraMovilMVVM_AESM
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new PaginaPrincipal();
         }
 
         protected override void OnStart()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalculadoraMovilMVVM_AESM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace CalculadoraMovilMVVM_AESM.Vistas
         public PaginaPrincipal()
         {
             InitializeComponent();
+            BindingContext = new VMPaginaPrincipal(Navigation);
         }
     }
 }

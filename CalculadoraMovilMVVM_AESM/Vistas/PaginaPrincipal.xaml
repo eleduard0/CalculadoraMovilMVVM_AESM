@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CalculadoraMovilMVVM_AESM.Vistas.PaginaPrincipal">
+             x:Class="CalculadoraMovilMVVM_AESM.Vistas.PaginaPrincipal"
+             BackgroundColor="#000000">
     <Grid VerticalOptions="EndAndExpand" BackgroundColor="#131313">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -13,7 +14,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Entry x:Name="Resultado" Grid.Row="0" Text="" FontSize="36" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" BackgroundColor="#131313" Margin="10,0,15,0" />
+        <Entry x:Name="Resultado" Grid.Row="0" Text="{Binding EntradaActual}" FontSize="36" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="End" BackgroundColor="#131313" Margin="10,0,15,0" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
@@ -30,27 +31,64 @@
 
             </Grid.ColumnDefinitions>
 
-
-            <Button Text="C" Grid.Row="0" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
-            <Button Text="%" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
-            <ImageButton Source="borrar.png" Grid.Row="0" Grid.Column="2"  BackgroundColor="Transparent" />
-            <Button Text="/"  Grid.Row="0" Grid.Column="3"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a" />
-            <Button Text="7" Grid.Row="1" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23" />
-            <Button Text="8" Grid.Row="1" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="9" Grid.Row="1" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23" />
-            <Button Text="*"  Grid.Row="1"  Grid.Column="3"  BackgroundColor="Transparent" FontSize="23" TextColor="#fecb1a"/>
-            <Button Text="4" Grid.Row="2" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="5" Grid.Row="2" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="6" Grid.Row="2" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="-" Grid.Row="2" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
-            <Button Text="1" Grid.Row="3" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="2" Grid.Row="3" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="3" Grid.Row="3" Grid.Column="2"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="+" Grid.Row="3" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
-            <Button Text="00" Grid.Row="4" Grid.Column="0"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="0" Grid.Row="4" Grid.Column="1"  BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="." Grid.Row="4" Grid.Column="2"   BackgroundColor="Transparent" FontSize="23"/>
-            <Button Text="=" Grid.Row="4" Grid.Column="3"  BackgroundColor="Transparent" TextColor="#fecb1a" FontSize="Large"/>
+            <Button Text="AC" Grid.Row="0" Grid.Column="0" Command="{Binding LimpiarCommand}" BackgroundColor="#131313" FontSize="23" TextColor="#fecb1a" CornerRadius="50"/>
+            <Button Text="%" Grid.Row="0" Grid.Column="1" Command="{Binding ProcesoSimpcommand}" BackgroundColor="#131313" FontSize="23" TextColor="#fecb1a" CornerRadius="50"/>
+            <ImageButton Source="borrar.png" Grid.Row="0" Grid.Column="2" Command="{Binding BorrarCommand}" BackgroundColor="#131313" CornerRadius="50"/>
+            <ImageButton Source="dividir.png"  Grid.Row="0" Grid.Column="3" Command="{Binding OperacionCommand}" CommandParameter="/" BackgroundColor="#131313"  CornerRadius="50">
+                <ImageButton.Triggers>
+                    <DataTrigger TargetType="ImageButton" Binding="{Binding TriggerOperacion}" Value="/">
+                        <Setter Property="BackgroundColor" Value="White" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="ImageButton" Binding="{Binding TriggerOperacion}" Value="null">
+                        <Setter Property="BackgroundColor" Value="#131313" />
+                    </DataTrigger>
+                </ImageButton.Triggers>
+            </ImageButton>
+            <Button Text="7" Grid.Row="1" Grid.Column="0" Command="{Binding NumeroCommand}" CommandParameter="7" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="8" Grid.Row="1" Grid.Column="1" Command="{Binding NumeroCommand}" CommandParameter="8" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="9" Grid.Row="1" Grid.Column="2" Command="{Binding NumeroCommand}" CommandParameter="9" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <ImageButton Source="multiplicacion.png"  Grid.Row="1"  Grid.Column="3" Command="{Binding OperacionCommand}" CommandParameter="*" BackgroundColor="#131313"  CornerRadius="50">
+                <ImageButton.Triggers>
+                    <DataTrigger TargetType="ImageButton" Binding="{Binding TriggerOperacion}" Value="*">
+                        <Setter Property="BackgroundColor" Value="White" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="ImageButton" Binding="{Binding TriggerOperacion}" Value="null">
+                        <Setter Property="BackgroundColor" Value="#131313" />
+                    </DataTrigger>
+                </ImageButton.Triggers>
+            </ImageButton>
+                <Button Text="4" Grid.Row="2" Grid.Column="0" Command="{Binding NumeroCommand}" CommandParameter="4" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="5" Grid.Row="2" Grid.Column="1" Command="{Binding NumeroCommand}" CommandParameter="5" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="6" Grid.Row="2" Grid.Column="2" Command="{Binding NumeroCommand}" CommandParameter="6" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="-" Grid.Row="2" Grid.Column="3" Command="{Binding OperacionCommand}" CommandParameter="-" BackgroundColor="#131313" TextColor="#fecb1a" FontSize="Large" CornerRadius="50">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding TriggerOperacion}" Value="-">
+                        <Setter Property="BackgroundColor" Value="White" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding TriggerOperacion}" Value="null">
+                        <Setter Property="BackgroundColor" Value="#131313" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Text="1" Grid.Row="3" Grid.Column="0" Command="{Binding NumeroCommand}" CommandParameter="1" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="2" Grid.Row="3" Grid.Column="1" Command="{Binding NumeroCommand}" CommandParameter="2" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="3" Grid.Row="3" Grid.Column="2" Command="{Binding NumeroCommand}" CommandParameter="3" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="+" Grid.Row="3" Grid.Column="3" Command="{Binding OperacionCommand}" CommandParameter="+" BackgroundColor="#131313" TextColor="#fecb1a" FontSize="Large" CornerRadius="50">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding TriggerOperacion}" Value="+">
+                        <Setter Property="BackgroundColor" Value="White" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding TriggerOperacion}" Value="null">
+                        <Setter Property="BackgroundColor" Value="#131313" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Text="00" Grid.Row="4" Grid.Column="0" Command="{Binding NumeroCommand}" CommandParameter="00" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="0" Grid.Row="4" Grid.Column="1" Command="{Binding NumeroCommand}" CommandParameter="0" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="." Grid.Row="4" Grid.Column="2" Command="{Binding DecimalCommand}" BackgroundColor="#131313" FontSize="23" CornerRadius="50"/>
+            <Button Text="=" Grid.Row="4" Grid.Column="3" Command="{Binding IgualCommand}" BackgroundColor="#131313" TextColor="#fecb1a" FontSize="Large" CornerRadius="50">
+                
+            </Button>
         </Grid>
     </Grid>
 </ContentPage>
